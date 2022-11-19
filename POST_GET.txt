@@ -1,0 +1,38 @@
+-------------работа с запросами POST, GET, создание форм-----------
+для того, чтобы создавать формы и отслеживать что сделал пользователь необходимо установить библиотеку flask-wtf
+pip install flask-wtf
+1. Создаем файл Loginform.py, в котором прописываем:
+
+#-----------------Loginform.py------------------------
+        from flask-wtf import FlaskForm
+        from wtforms import StringField, PasswordField, BooleanField, SubmitField
+        from wtforms.validators import DataRequired
+
+
+        class Lf(FlaskForm):
+            name = StringField("Имя", validators=[DataRequired()])
+            email = EmailField("Почта", validators=[DataRequired()])
+            password = PasswordField("Пароль", validators=[DataRequired()])  # введение типа данных паролей
+            password_again = PasswordField("Повторите пароль", validators=[DataRequired()])
+            remember_me = BooleanField('Запомнить меня')
+            submit = SubmitField('Зарегистрироваться')
+
+
+# --------------- main.py-----------------------
+
+from flask import Flask, render_template
+from Loginform import Lf     # импортировали класс Lf из файла Loginform
+
+app = Flask(__name__)
+
+@app.route('/')
+def main():
+    return render_template('base.html')
+@app.route('/register') # создали декоратор для регистрации
+def reg():
+
+
+if __name__ = '__main__':
+    app.run()
+
+

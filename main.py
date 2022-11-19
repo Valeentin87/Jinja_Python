@@ -44,18 +44,18 @@ data = '''Сегодня на рынке предлагают следующие
         {% for i in fruits %}
             {{i}}
         {% endfor %}'''
-tm1 = Template('{{data}}')
+tm1 = Template(data)
 msg = tm1.render(fruits = fruits)
 print(msg)
 
 # ------Использование условия if в шаблонах -----------
 
-numbers = [2, 4, 7, 8, 9]
+numbers = []
 data1 = '''Среди чисел {{nums}} на 2 без остатка делятся:
             {% if nums == None %}
                 print('список пуст')
             {% endif %}'''
-tm3 = Template('{{data1}}')
+tm3 = Template(data1)
 msg1 = tm3.render(nums = numbers)
 print(msg1)
 
